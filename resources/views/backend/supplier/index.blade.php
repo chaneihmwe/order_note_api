@@ -3,11 +3,11 @@
  <div class="container">
      <div class="row">
          <div class="col">
-            <h1>Category</h1>
+            <h1>Supplier</h1>
          </div>
          <div class="col col-lg-2">
              <a class="btn btn-primary" href="{{route('admin.supplier.create')}}">
-                <i class="fas fa-plus">Add Category</i>
+                <i class="fas fa-plus">Add Supplier</i>
              </a>
          </div>
      </div>

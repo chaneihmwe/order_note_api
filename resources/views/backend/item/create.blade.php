@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-3 card p-5">
-            <form action="{{route('admin.item.store')}}" method="post" enctype="multipath/form-data">
+            <form action="{{route('admin.item.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="">Name<i color="red">*</i></label>   

@@ -54,7 +54,7 @@
                     @enderror
                 </div>         
                 <div class="form-group col-4 offset-4">
-                    <input type="submit" value="Save" class="form-control btn btn-primary " >
+                    <input type="submit" value="Save" class="form-control btn btn-primary" >
                 </div>
             </form>    
         </div>

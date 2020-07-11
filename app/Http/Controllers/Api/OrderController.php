@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\OrderDetail;
 use App\Order;
 use Carbon\Carbon;
+use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\MenuResource;
@@ -49,27 +50,33 @@ class OrderController extends Controller
     {
         //
         $request->validate([
-          "customer_name" => "required|min:4|",
-          "customer_phone_no" => "required|min:4|",
-          "customer_address" => "required|min:4|max:20",
+          "name" => "required|min:4|",
+          "phone_no" => "required|min:4|",
+          "address" => "required|min:4|max:20",
           "qty" => "required|min:1",
           "total_price" => "required|min:4|",
         ]);
-      
-        $orders = Order::create([
-            'customer_name'      => request('customer_name'),
-            'customer_phone_no'      => request('customer_phone_no'),
-            'customer_address'   => request('customer_address'),
+        $role = 'customer';
+
+        $user = User::create([
+            'name'      => request('name'),
+            'phone_no'      => request('phone_no'),
+            'address'   => request('address'),
+            'role'   => 'customer',
+        ]);
+
+        $order = Order::create([
+            'customer_id' => $user->id,
             'order_date'   => date("Y-m-d"),
             'qty'  => request('qty'),
             'total_price'=> request('total_price'),
         ]);
 
-        $order_id = $orders->id;
+       $order_id = $order->id;
       
         $order_details = array(
             array("1","2","red","L"),
-            array("2","2","white","L")
+            array("1","2","white","L")
         );
         
         foreach ($order_details as $order_detail) {
@@ -82,7 +89,7 @@ class OrderController extends Controller
             ]);
                 }
         return response()->json([
-            'orders'  =>  $orders,
+            'orders'  =>  $order,
             'message'   =>  'Successfully Order Added!'
         ],200);
     }

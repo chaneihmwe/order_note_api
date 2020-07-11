@@ -15,15 +15,17 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('customer_name', 20);
-            $table->string('customer_phone_no', 20);
-            $table->string('customer_address', 100);
+            $table->unsignedBigInteger('customer_id');
             $table->date('order_date');
             $table->date('confirmed_date')->nullable();
             $table->date('delivered_date')->nullable();
             $table->unsignedBigInteger('qty');
             $table->unsignedBigInteger('total_price');
             $table->timestamps();
+
+            $table->foreign('customer_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

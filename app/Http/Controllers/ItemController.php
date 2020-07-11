@@ -46,7 +46,7 @@ class ItemController extends Controller
          $image = $request->file('image');
          if($image){
             $name=uniqid().time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('image'),$name);
+            $image->move(public_path('image/'),$name);
             $path='image/'.$name;
             }else{
                  $path="";
@@ -102,7 +102,7 @@ class ItemController extends Controller
         $image = $request->file('image');
          if($image){
             $name=uniqid().time().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('image'),$name);
+            $image->move(public_path('image/'),$name);
             $path='image/'.$name;
             }else{
                  $path=request('old_image');

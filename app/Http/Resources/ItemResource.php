@@ -24,7 +24,7 @@ class ItemResource extends JsonResource
             'name' => $this->name,
             'image' => $this->image,
             'price' => $this->price,
-            'user' => new SupplierResource(User::find($this->supplier_id)),
+            'supplier' => new SupplierResource(User::find($this->supplier_id)),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             

@@ -121,7 +121,7 @@ class SupplierController extends Controller
             $path='/image/'.$name;
         }
         else{
-            $path = request('old_image');
+            $path = request('image');
         }
         $supplier=User::find($id);
         $supplier->name =request('name');              

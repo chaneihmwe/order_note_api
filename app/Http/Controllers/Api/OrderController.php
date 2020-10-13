@@ -55,8 +55,10 @@ class OrderController extends Controller
           "address" => "required|min:4|max:20",
           "qty" => "required|min:1",
           "total_price" => "required|min:4|",
+          "order_details" => "required",
         ]);
         $role = 'customer';
+        $order_details = json_decode(\request('order_details'));
 
         $user = User::create([
             'name'      => request('name'),
@@ -73,19 +75,15 @@ class OrderController extends Controller
         ]);
 
        $order_id = $order->id;
-      
-        $order_details = array(
-            array("1","2","red","L"),
-            array("1","2","white","L")
-        );
+    
         
         foreach ($order_details as $order_detail) {
                 OrderDetail::create([
                 'order_id'  => $order_id,
-                'item_id'   => $order_detail[0],
-                'sub_qty'   => $order_detail[1],
-                'color'  => $order_detail[2],
-                'size'=> $order_detail[3],
+                'item_id'   => $order_detail->item_id,
+                'sub_qty'   => $order_detail->sub_qty,
+                'color'  => $order_detail->color,
+                'size'=> $order_detail->size,
             ]);
                 }
         return response()->json([
